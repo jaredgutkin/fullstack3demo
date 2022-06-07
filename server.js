@@ -3,6 +3,8 @@ const express =  require('express')
 const app = express()
 const PORT = 3001
 
+app.use(express.json())
+
 let persons = [
     { 
         "id": 1,
@@ -54,14 +56,14 @@ app.delete('/api/persons/:id', (req, res)=>{
 
 
 const generateId = () => {
-    const maxId = notes.length > 0
-      ? Math.max(...notes.map(n => n.id))
+    const maxId = persons.length > 0
+      ? Math.max(...persons.map(n => n.id))
       : 0
     return maxId + 1
   }
 
 
-app.post('/api/persons/:id', (req, res)=>{
+app.post('/api/persons', (req, res)=>{
     const body = req.body
 
     let entry = {
@@ -70,7 +72,7 @@ app.post('/api/persons/:id', (req, res)=>{
         number: body.number
     }
 
-    persons = persons.push(entry)
+    persons.push(entry)
     res.json(entry)
 })
 
