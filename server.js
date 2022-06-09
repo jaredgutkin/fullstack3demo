@@ -78,7 +78,7 @@ app.post('/api/persons', (req, res)=>{
 
     if(persons.some(entry => entry.name == body.name)){
       //error
-      return res.status(400).json({error: "name must be unique"})
+      return res.status(409).json({error: "name must be unique"})
     }
 
     let entry = {
